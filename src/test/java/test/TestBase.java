@@ -17,10 +17,9 @@ public class TestBase {
     public static void beforeAll() {
 
         RestAssured.baseURI = "https://demoqa.com";
-        //RestAssured.basePath = "/login";
-
         Configuration.remote =  System.getProperty("selenoid", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
         Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
+        Configuration.pageLoadStrategy = "eager";
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
