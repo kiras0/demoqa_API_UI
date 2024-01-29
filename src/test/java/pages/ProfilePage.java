@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class ProfilePage {
+    private final String TEXT = "No rows found";
     private SelenideElement mainHeader = $(".main-header"),
             deleteButton = $("#delete-record-undefined"),
             okButton = $("#closeSmallModal-ok"),
@@ -42,7 +43,6 @@ public class ProfilePage {
     }
 
     public ProfilePage checkTableBody() {
-        String TEXT = "No rows found";
         $(tableEmptyBody).shouldBe(visible).shouldHave(text(TEXT));
 
         return this;
