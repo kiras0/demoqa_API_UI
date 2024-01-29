@@ -38,8 +38,9 @@ public class BookDeleteTest extends TestBase{
         
         step("Open profile and data consent", () ->
 
-            profilePage.openPage()
-                       .googleConsent()
+            profilePage.googleConsent()
+                       .openPage()
+
 
         );
 
