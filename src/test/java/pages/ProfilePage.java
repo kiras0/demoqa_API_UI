@@ -3,7 +3,7 @@ package pages;
 
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.Alert;
+
 
 
 import static com.codeborne.selenide.Condition.*;
@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ProfilePage {
+
     private SelenideElement mainHeader = $(".main-header"),
             deleteButton = $("#delete-record-undefined"),
             okButton = $("#closeSmallModal-ok"),
@@ -38,11 +39,7 @@ public class ProfilePage {
 
         return this;
     }
-    public ProfilePage confirmDeleteAlert() {
-        Alert simpleAlert = switchTo().alert();
-        simpleAlert.accept();
-        return this;
-    }
+
 
     public ProfilePage checkTableBody() {
         String TEXT = "Git Pocket Guide";
