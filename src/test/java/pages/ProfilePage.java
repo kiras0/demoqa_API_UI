@@ -1,10 +1,11 @@
 package pages;
 
 
+
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.empty;
-import static com.codeborne.selenide.Condition.text;
+
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -14,7 +15,9 @@ public class ProfilePage {
             deleteButton = $("#delete-record-undefined"),
             okButton = $("#closeSmallModal-ok"),
             consentButton = $(".fc-consent-root"),
-            tableBody = $(".rt-tbody");
+            tableEmptyBody = $(".rt-noData"),
+
+    noData = $(".rt-noData");
 
     public ProfilePage openPage() {
         open("/profile");
@@ -39,7 +42,8 @@ public class ProfilePage {
     }
 
     public ProfilePage checkTableBody() {
-        $(tableBody).shouldBe(empty);
+        String TEXT = "No rows found";
+        $(tableEmptyBody).shouldBe(visible).shouldHave(text(TEXT));
 
         return this;
     }
