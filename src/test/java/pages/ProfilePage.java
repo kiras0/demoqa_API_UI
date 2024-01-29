@@ -7,8 +7,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ProfilePage {
     private SelenideElement mainHeader = $(".main-header"),
@@ -35,7 +34,7 @@ public class ProfilePage {
     }
     public ProfilePage confirmDelete() {
         okButton.click();
-
+        switchTo().alert().accept();
         return this;
     }
 
