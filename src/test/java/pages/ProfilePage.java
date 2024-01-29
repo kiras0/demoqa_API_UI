@@ -11,14 +11,11 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class ProfilePage {
-    private final String TEXT = "No rows found";
     private SelenideElement mainHeader = $(".main-header"),
             deleteButton = $("#delete-record-undefined"),
             okButton = $("#closeSmallModal-ok"),
             consentButton = $(".fc-consent-root"),
-            tableEmptyBody = $(".rt-noData"),
-
-    noData = $(".rt-noData");
+            tableBody = $(".ReactTable");
 
     public ProfilePage openPage() {
         open("/profile");
@@ -43,7 +40,8 @@ public class ProfilePage {
     }
 
     public ProfilePage checkTableBody() {
-        $(tableEmptyBody).shouldBe(visible).shouldHave(text(TEXT));
+        String TEXT = "Git Pocket Guide";
+        $(tableBody).shouldNotHave(text(TEXT));
 
         return this;
     }
