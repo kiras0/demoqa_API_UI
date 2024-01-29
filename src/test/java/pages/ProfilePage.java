@@ -3,6 +3,7 @@ package pages;
 
 
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Alert;
 
 
 import static com.codeborne.selenide.Condition.*;
@@ -34,7 +35,8 @@ public class ProfilePage {
     }
     public ProfilePage confirmDelete() {
         okButton.click();
-        switchTo().alert().accept();
+        Alert simpleAlert = switchTo().alert();
+        simpleAlert.accept();
         return this;
     }
 
