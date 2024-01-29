@@ -35,6 +35,10 @@ public class ProfilePage {
     }
     public ProfilePage confirmDelete() {
         okButton.click();
+
+        return this;
+    }
+    public ProfilePage confirmDeleteAlert() {
         Alert simpleAlert = switchTo().alert();
         simpleAlert.accept();
         return this;

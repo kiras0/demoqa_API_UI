@@ -46,11 +46,15 @@ public class BookDeleteTest extends TestBase{
 
         step("Delete book from collection through UI", () ->
             profilePage.deleteBook()
-                        .confirmDelete()
+
         );
 
-        step("Check that the collection is empty.", () ->
-            profilePage.checkTableBody()
+         step("Confirm Deletion of book", () ->
+             profilePage.confirmDelete()
+                        .confirmDeleteAlert()
+         );
+                 step("Check that the collection is empty.", () ->
+             profilePage.checkTableBody()
         );
     }
 }
