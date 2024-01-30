@@ -16,7 +16,7 @@ public class BookDeleteTest extends TestBase{
     @Tag("ApiAndUi")
     @DisplayName("Deleting book from Demoqa using API and UI")
     @WithLogin
-    void successfulRegistration() {
+    void deletingBookUsingApiAndUi() {
     LoginResponse authResponse =
         step("API Login request", AuthorizationApi::authResponse
         );
@@ -29,8 +29,6 @@ public class BookDeleteTest extends TestBase{
         step("Data consent and opening profile", () ->
              profilePage.googleConsent()
                         .openPage()
-
-
         );
         step("Check that the colection is not empty", () ->
               profilePage.checkForBook()

@@ -25,11 +25,10 @@ public class ProfilePage {
             consentBanner.$(byText("Consent")).click();
         }
         else{
-            System.out.println("No consent window");
+            System.out.println("No consent banner");
         }
         return this;
     }
-
     public ProfilePage checkForBook() {
         emptyRows.shouldNotBe(visible);
         return this;
@@ -40,7 +39,7 @@ public class ProfilePage {
     }
     public ProfilePage confirmDelete() {
         okButton.click();
-        Selenide.confirm();
+        Selenide.switchTo().alert().accept();
         return this;
     }
     public ProfilePage checkTableBody() {
