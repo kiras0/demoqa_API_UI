@@ -1,9 +1,10 @@
 package api;
 
 import models.*;
-
 import java.util.ArrayList;
 
+import static data.BaseURIs.collectionURI;
+import static data.BookData.bookIsb;
 import static io.restassured.RestAssured.given;
 import static specs.Specifications.*;
 
@@ -13,26 +14,24 @@ public class BooksApi {
                 .header("Authorization", "Bearer " + token)
                 .queryParams("UserId", userId)
                 .when()
-                .delete("/BookStore/v1/Books")
+                .delete(collectionURI)
                 .then()
                 .spec(deleteAllBooksResponse);
     }
-
     public static AddBookResponse addBook(String token, String userId) {
 
         ArrayList books = new ArrayList<>();
-        books.add(new IsbnBookModel("9781449325862"));
+        books.add(new IsbnBookModel(bookIsb));
 
         AddBookBodyModel bookData = new AddBookBodyModel();
         bookData.setUserId(userId);
         bookData.setCollectionOfIsbns(books);
-
         return
                 given(mainRequest)
                         .header("Authorization", "Bearer " + token)
                         .body(bookData)
                         .when()
-                        .post("/BookStore/v1/Books")
+                        .post(collectionURI)
                         .then()
                         .spec(addABookResponse)
                         .extract().as(AddBookResponse.class);

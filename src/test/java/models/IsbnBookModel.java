@@ -8,6 +8,4 @@ public class IsbnBookModel {
         this.isbn = isbn;
     }
     private String isbn;
-
-
 }

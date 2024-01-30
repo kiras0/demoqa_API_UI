@@ -8,6 +8,4 @@ import java.util.List;
 public class AddBookBodyModel {
     String userId;
     List<IsbnBookModel> collectionOfIsbns;
-
-
 }

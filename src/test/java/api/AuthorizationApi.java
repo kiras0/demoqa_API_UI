@@ -5,6 +5,7 @@ import models.LoginResponse;
 
 import static data.UserData.PASSWORD;
 import static data.UserData.USERNAME;
+import static data.BaseURIs.loginURI;
 import static io.restassured.RestAssured.given;
 import static specs.Specifications.mainRequest;
 import static specs.Specifications.successfulLoginResponse;
@@ -19,7 +20,7 @@ public class AuthorizationApi {
                 given(mainRequest)
                         .body(userRegister)
                         .when()
-                        .post("/Account/v1/Login")
+                        .post(loginURI)
                         .then()
                         .spec(successfulLoginResponse)
                         .extract().as(LoginResponse.class);

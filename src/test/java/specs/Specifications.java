@@ -16,7 +16,6 @@ public class Specifications {
             .log().headers()
             .log().body()
             .log().uri();
-
     public static ResponseSpecification successfulLoginResponse = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(ALL)
@@ -29,6 +28,4 @@ public class Specifications {
             .expectStatusCode(204)
             .log(ALL)
             .build();
-
-
 }

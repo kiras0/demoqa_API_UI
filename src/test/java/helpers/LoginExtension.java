@@ -9,13 +9,14 @@ import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static data.BaseURIs.cookieImportURI;
 import static io.qameta.allure.Allure.step;
 
 public class LoginExtension implements BeforeEachCallback {
     @Override
     public void beforeEach(ExtensionContext context){
         step("Import Cookies", () ->{
-            open("/favicon.ico");
+            open(cookieImportURI);
 
         LoginResponse authResponse = AuthorizationApi.authResponse();
         getWebDriver().manage().addCookie(new Cookie("userID", authResponse.getUserId()));

@@ -33,7 +33,6 @@ public class TestBase {
         ));
         Configuration.browserCapabilities = capabilities;
     }
-
     @AfterEach
     void addAttachments() {
         Attachments.screenshotAs("Screenshot");
