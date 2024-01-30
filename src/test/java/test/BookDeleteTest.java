@@ -26,9 +26,10 @@ public class BookDeleteTest extends TestBase{
         step("Add book to the Collection using API", () ->
                BooksApi.addBook(authResponse.getToken(), authResponse.getUserId())
         );
-        step("Open profile and data consent", () ->
-             profilePage.openPage()
-                        .googleConsent()
+        step("Data consent and opening profile", () ->
+             profilePage.googleConsent()
+                        .openPage()
+
 
         );
         step("Check that the colection is not empty", () ->
