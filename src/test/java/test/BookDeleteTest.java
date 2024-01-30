@@ -12,6 +12,7 @@ import static io.qameta.allure.Allure.step;
 
 public class BookDeleteTest extends TestBase{
    ProfilePage profilePage = new ProfilePage();
+
     @Test
     @Tag("ApiAndUi")
     @DisplayName("Deleting book from Demoqa using API and UI")

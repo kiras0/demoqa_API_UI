@@ -20,6 +20,7 @@ public class ProfilePage {
         mainHeader.shouldHave(text("Profile"));
         return this;
     }
+
     public ProfilePage googleConsent() {
         if (consentBanner.isDisplayed()) {
             consentBanner.$(byText("Consent")).click();
@@ -40,9 +41,11 @@ public class ProfilePage {
     public ProfilePage confirmDelete() {
         okButton.click();
         Selenide.switchTo().alert().accept();
+        Selenide.switchTo().parentFrame();
         return this;
     }
     public ProfilePage checkTableBody() {
+        open(profileURI);
         tableBody.shouldNotHave(text(pocketGuideTitle));
         return this;
     }
