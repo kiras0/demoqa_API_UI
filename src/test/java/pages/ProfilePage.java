@@ -6,10 +6,9 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static data.BaseURIs.profileURI;
-import static data.BookData.pocketGuideTitle;
 
 public class ProfilePage {
-    private SelenideElement mainHeader = $(".main-header"),
+    final private SelenideElement mainHeader = $(".main-header"),
             deleteButton = $("#delete-record-undefined"),
             okButton = $("#closeSmallModal-ok"),
             consentBanner = $(".fc-consent-root"),
@@ -44,9 +43,9 @@ public class ProfilePage {
         Selenide.switchTo().parentFrame();
         return this;
     }
-    public ProfilePage checkTableBody() {
+    public ProfilePage checkTableBody(String bookTitle) {
         open(profileURI);
-        tableBody.shouldNotHave(text(pocketGuideTitle));
+        tableBody.shouldNotHave(text(bookTitle));
         return this;
     }
 

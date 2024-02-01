@@ -28,4 +28,8 @@ public class Specifications {
             .expectStatusCode(204)
             .log(ALL)
             .build();
+    public static ResponseSpecification bookCollectionResponse = new ResponseSpecBuilder()
+            .expectStatusCode(200)
+            .log(ALL)
+            .build();
 }

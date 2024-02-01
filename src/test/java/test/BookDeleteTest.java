@@ -3,6 +3,7 @@ package test;
 import api.AuthorizationApi;
 import api.BooksApi;
 import helpers.WithLogin;
+import models.BookCollectionResponse;
 import models.LoginResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -11,6 +12,7 @@ import pages.ProfilePage;
 import static io.qameta.allure.Allure.step;
 
 public class BookDeleteTest extends TestBase{
+    private final int BOOK_NO = 0;
    ProfilePage profilePage = new ProfilePage();
 
     @Test
@@ -18,14 +20,18 @@ public class BookDeleteTest extends TestBase{
     @DisplayName("Deleting book from Demoqa using API and UI")
     @WithLogin
     void deletingBookUsingApiAndUi() {
-    LoginResponse authResponse =
+// Extracting collection of books
+        BookCollectionResponse collection = BooksApi.requestBookCollection();
+
+        LoginResponse authResponse =
         step("API Login request", AuthorizationApi::authResponse
         );
         step("Delete all Books through API", () ->
                BooksApi.deleteAllBooks(authResponse.getToken(), authResponse.getUserId())
         );
+
         step("Add book to the Collection using API", () ->
-               BooksApi.addBook(authResponse.getToken(), authResponse.getUserId())
+                BooksApi.addBook(collection.getBooks()[BOOK_NO].getIsbn(), authResponse.getToken(), authResponse.getUserId())
         );
         step("Data consent and opening profile", () ->
              profilePage.googleConsent()
@@ -41,7 +47,7 @@ public class BookDeleteTest extends TestBase{
              profilePage.confirmDelete()
         );
         step("Check that the collection is empty.", () ->
-             profilePage.checkTableBody()
+             profilePage.checkTableBody(collection.getBooks()[BOOK_NO].getTitle())
         );
     }
 }

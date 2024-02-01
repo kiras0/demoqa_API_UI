@@ -4,7 +4,6 @@ import models.*;
 import java.util.ArrayList;
 
 import static data.BaseURIs.collectionURI;
-import static data.BookData.bookIsb;
 import static io.restassured.RestAssured.given;
 import static specs.Specifications.*;
 
@@ -18,10 +17,20 @@ public class BooksApi {
                 .then()
                 .spec(deleteAllBooksResponse);
     }
-    public static AddBookResponse addBook(String token, String userId) {
+    public static BookCollectionResponse requestBookCollection() { BookCollectionResponse collection =
+            given(mainRequest)
+                    .when()
+                    .get("/BookStore/v1/Books")
+                    .then()
+                    .spec(bookCollectionResponse)
+                    .extract().as(BookCollectionResponse.class);
+        return collection;
+    }
+
+    public static AddBookResponse addBook(String isb, String token, String userId) {
 
         ArrayList books = new ArrayList<>();
-        books.add(new IsbnBookModel(bookIsb));
+        books.add(new IsbnBookModel(isb));
 
         AddBookBodyModel bookData = new AddBookBodyModel();
         bookData.setUserId(userId);
@@ -36,4 +45,8 @@ public class BooksApi {
                         .spec(addABookResponse)
                         .extract().as(AddBookResponse.class);
     }
+
+
+
+
 }
